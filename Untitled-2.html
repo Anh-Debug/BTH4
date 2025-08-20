@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab Content</title>
+    <link rel="stylesheet" href="styles.css">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script>
+    $(document).ready(function () {
+    $('.tab').click(function () {
+        // Remove active from all tabs and contents
+        $('.tab').removeClass('active');
+        $('.content').removeClass('active');
+
+        // Add active to clicked tab and matching content
+        $(this).addClass('active');
+        const selectedTab = $(this).data('tab');
+        $('#' + selectedTab).addClass('active');
+    });
+});
+</script>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.tab-container {
+    width: 600px;
+    margin: 30px auto;
+    border: 2px solid #000;
+}
+
+.tabs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: red;
+}
+
+.tab-content {
+    background-color: #8B0000;
+    color: white;
+    padding: 20px;
+}
+
+.content {
+    display: none;
+}
+
+.content.active {
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="tab-container">
+    <ul class="tabs">
+        <li class="tab active" data-tab="python">Python</li>
+        <li class="tab" data-tab="java">Java</li>
+        <li class="tab" data-tab="cpp">C++</li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="content active" id="python">
+            <p>Python is an easy to learn, powerful programming language. It has efficient high-level data structures and a simple but effective approach to object-oriented programming. Python’s elegant syntax and dynamic typing, together with its interpreted nature, make it an ideal language for scripting and rapid application development in many areas on most platforms.</p>
+        </div>
+        <div class="content" id="java">
+            <p>Java is a high-level programming language originally developed by Sun Microsystems and released in 1995. Java runs on a variety of platforms, such as Windows, Mac OS, and the various versions of UNIX.</p>
+        </div>
+        <div class="content" id="cpp">
+            <p>C++ is a general-purpose programming language created as an extension of the C programming language. It has object-oriented, generic, and functional features in addition to facilities for low-level memory manipulation.</p>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>   

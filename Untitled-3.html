@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Slider jQuery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .slider-container {
+            width: 600px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            text-align: center;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 2px solid #000;
+        }
+
+        .caption {
+            background-color: #3b3be3;
+            color: white;
+            padding: 10px;
+        }
+    </style>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            let current = 0;
+            const slides = $('.slide');
+            const total = slides.length;
+
+            // Hiện slide đầu tiên
+            slides.eq(current).fadeIn();
+
+            setInterval(function () {
+                slides.eq(current).fadeOut(1000, function () {
+                    current = (current + 1) % total;
+                    slides.eq(current).fadeIn(1000);
+                });
+            }, 3000);
+        });
+    </script>
+</head>
+<body>
+
+<div class="slider-container">
+    <div class="slide">
+        <img src="lamborghini-huracan-stj-1-7234.jpg" alt="Category 1">
+        <div class="caption">Category 1</div>
+    </div>
+    <div class="slide">
+        <img src="tải xuống.jpg" alt="Category 2">
+        <div class="caption">Category 2</div>
+    </div>
+    <div class="slide">
+        <img src="tải xuống (1).jpg" alt="Category 3">
+        <div class="caption">Category 3</div>
+    </div>
+</div>
+
+</body>
+</html>

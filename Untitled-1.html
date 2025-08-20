@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            margin-top: 50px;
+        }
+        .container {
+            background-color: #00aaff;
+            border: 2px solid #000099;
+            border-radius: 5px;
+            padding: 20px;
+            color: white;
+            width: 300px;
+            margin: 10px;
+        }
+        h3 {
+            color: #5f0101;
+            margin-bottom: 15px;
+        }
+        input[type="number"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        #resultLaiSuat {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #5f0101;
+        }
+         #resultTienTe {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #5f0101;
+        }
+        button {
+            background-color: #0000cc;
+            color: white;
+            padding: 8px 60px;
+            border: none;
+            cursor: pointer;
+           border: 2px solid black;
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+    <h3>Tính lãi suất tiết kiệm</h3><br>
+    <label for sotien>Số Tiền</label>
+    <input type="number" id="sotien" name="sotien"><br>
+    <label for kyhan>Kỳ hạn</label>
+    <input type="number" id="kyhan" name="kyhan"><br>
+    <label for laisuat>lãi suất</label>
+    <input type="number" id="laisuat" name="laisuat"><br>
+    <button onclick="tinhLaiSuat()">Tính</button>
+    <div id="resultLaiSuat"></div>
+</div>
+<script>
+    function tinhLaiSuat() {
+        const sotien = parseFloat(document.getElementById('sotien').value);
+        const kyhan = parseFloat(document.getElementById('kyhan').value);
+        const laisuat = parseFloat(document.getElementById('laisuat').value);
+
+        if (isNaN(sotien) || isNaN(kyhan) || isNaN(laisuat) || sotien <= 0 || kyhan <= 0 || laisuat <= 0) {
+            document.getElementById('resultLaiSuat').innerText = "Vui lòng nhập đầy đủ và hợp lệ!";
+            return;
+        }
+
+        const interest = sotien * (laisuat / 100) * (kyhan / 12);
+        document.getElementById('resultLaiSuat').innerText = "Tiền lãi: " + interest.toFixed(2) + " VNĐ";
+    }
+</script>
+<div class="container">
+    <h3>Chuyển đổi đơn vị tiền tệ</h3>
+    <label for="vnd">Số tiền</label>
+    <input type="number" id="vnd" placeholder="Nhập số tiền (VND)"><br>
+
+    <label for="tiente">đổi đơn vị</label>
+    <select id="tiente">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="JPY">JPY</option>
+    </select><br>
+
+    <button onclick="doiTienTe()">Đổi</button>
+
+    <div id="resultTienTe"></div>
+</div>
+<script>
+    function doiTienTe() {
+        const vnd = parseFloat(document.getElementById("vnd").value);
+        const tiente = document.getElementById("tiente").value;
+
+        if (isNaN(vnd) || vnd <= 0) {
+            document.getElementById("resultTienTe").innerText = "Vui lòng nhập số tiền hợp lệ!";
+            return;
+        }
+
+        let rate = 0;
+        switch (tiente) {
+            case "USD":
+                rate = 22000;
+                break;
+            case "EUR":
+                rate = 26000;
+                break;
+            case "JPY":
+                rate = 160;
+                break;
+        }
+
+        const doiTienTe = vnd / rate;
+        document.getElementById("resultTienTe").innerText = `${vnd} VND = ${doiTienTe.toFixed(2)} ${tiente}`;
+    }
+</script>
+</body>
+</html>
